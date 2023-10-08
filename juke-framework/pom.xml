@@ -1,0 +1,224 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+   xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+
+   <modelVersion>4.0.0</modelVersion>
+
+   <!-- ********************************************** -->
+   <!-- ***************** PARENT POM ***************** -->
+   <!-- ********************************************** -->
+
+ 
+
+   <!-- ********************************************** -->
+   <!-- **************** PROJECT INFO **************** -->
+   <!-- ********************************************** -->
+
+   <groupId>org.juke.harnesss</groupId>
+   <artifactId>juke-framework</artifactId>
+   <version>0.0.1-SNAPSHOT</version>
+   <packaging>jar</packaging>
+
+   <name>juke-framework</name>
+   <description>juke Test Harness</description>
+ 
+
+   <!-- ********************************************** -->
+   <!-- ************ RESOURCES AND SERVICES ********** -->
+   <!-- ********************************************** -->
+
+  
+
+   <!-- ********************************************** -->
+   <!-- ****************** PROFILES ****************** -->
+   <!-- ********************************************** -->
+
+ 
+   <!-- ********************************************** -->
+   <!-- *********** ORGANIZATION AND MEMBERS ********* -->
+   <!-- ********************************************** -->
+
+
+ 
+
+   <!-- ********************************************** -->
+   <!-- **************** PROPERTIES ****************** -->
+   <!-- ********************************************** -->
+
+   <properties>
+      <!-- ============================================== -->
+      <!-- =============== MANIFEST DATA ================ -->
+      <!-- ============================================== -->
+      <manifest.name>org/juke/framework</manifest.name>
+      <!-- ============================================== -->
+      <!-- =========== DEPENDENCIES VERSIONS ============ -->
+      <!-- ============================================== -->
+      <apache.commons.collections.version>4.4</apache.commons.collections.version>
+      <hibernate.validator.version>5.4.3.Final</hibernate.validator.version>
+      <hibernate.ehcache.version>5.6.10.Final</hibernate.ehcache.version>
+      <jackson.version>2.14.1</jackson.version>
+  
+     
+      <spring.data.version>2022.0.0</spring.data.version>
+      <spring.version>5.3.24</spring.version>
+      <springdoc.version>1.6.9</springdoc.version>
+      <!-- ============================================== -->
+      <!-- ============== PLUGINS VERSIONS ============== -->
+      <!-- ============================================== -->
+
+      <!-- ============================================== -->
+      <!-- ============ PLUGIN CONFIGURATION ============ -->
+      <!-- ============================================== -->
+      <!-- Checkstyle customized rules file -->
+      <checkstyle.config.location>${project.basedir}/src/config/checkstyle/checkstyle-rules.xml</checkstyle.config.location>
+      <!-- Excludes generated code for Checkstyle -->
+      <checkstyle.excludes>**/generated/**/*</checkstyle.excludes>
+      <!-- Exclusion patterns for SpotBugs -->
+      <spotbugs.excludeFilterFile>${project.basedir}/src/config/spotbugs/spotbugs-exclude.xml</spotbugs.excludeFilterFile>
+      <!-- ============================================== -->
+      <!-- ================= MAVEN SITE ================= -->
+      <!-- ============================================== -->
+      <site.skin.version>2.3.0</site.skin.version>
+      <mavenURL>http://mvnrepository.com/artifact/${project.groupId}/${project.artifactId}</mavenURL>
+      <githubArtifactURL><![CDATA[https://github.com/bernardo-mg?tab=packages&amp;repo_name=${project.artifactId}]]></githubArtifactURL>
+   </properties>
+
+   <!-- ********************************************** -->
+   <!-- *************** DEPENDENCIES ***************** -->
+   <!-- ********************************************** -->
+
+  
+      <dependencies>
+		  <dependency>
+    <groupId>com.google.code.gson</groupId>
+    <artifactId>gson</artifactId>
+    <version>2.9.0</version>
+</dependency>
+		  <dependency>
+			  <groupId>org.mockito</groupId>
+			  <artifactId>mockito-core</artifactId>
+			  <version>2.23.0</version>
+		  </dependency>
+
+          <dependency>
+              <groupId>org.slf4j</groupId>
+              <artifactId>slf4j-api</artifactId>
+              <version>1.7.36</version>
+          </dependency>
+
+		  <dependency>
+			  <groupId>joda-time</groupId>
+			  <artifactId>joda-time</artifactId>
+			  <version>2.9.1</version>
+		 </dependency>
+		 <dependency>
+			 <groupId>com.fasterxml.jackson.core</groupId>
+			 <artifactId>jackson-core</artifactId>
+			 <version>2.14.1</version>
+		 </dependency>
+		  <dependency>
+			 <groupId>com.fasterxml.jackson.core</groupId>
+			 <artifactId>jackson-databind</artifactId>
+			 <version>2.14.1</version>
+		 </dependency>
+		  <dependency>
+			 <groupId>com.fasterxml.jackson.datatype</groupId>
+			 <artifactId>jackson-datatype-joda</artifactId>
+			 <version>2.14.1</version>
+		 </dependency>
+		 
+			<dependency>
+			<groupId>commons-io</groupId>	 
+			<artifactId>commons-io</artifactId>
+			<version>2.11.0</version>
+		
+		 
+		</dependency>
+		<dependency>
+			<groupId>ch.qos.logback</groupId>	 
+			<artifactId>logback-classic</artifactId>
+			<version>1.2.3</version>
+		
+		</dependency>
+
+
+
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter</artifactId>
+			<version>5.10.0-M1</version>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.10.0-M1</version>
+		</dependency>
+      </dependencies>
+  
+
+
+   <!-- ********************************************** -->
+   <!-- ******************* BUILD ******************** -->
+   <!-- ********************************************** -->
+
+   <build>
+      <defaultGoal>clean package</defaultGoal>
+      <plugins>
+         <plugin>
+            <!-- Changes -->
+            <!-- Takes care of the changes log -->
+            <!-- It is set to also validate the changes log file -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-changes-plugin</artifactId>
+            <executions>
+               <!-- Changes plugin is bound to the pre-site phase -->
+               <execution>
+                  <id>check-changes</id>
+                  <phase>pre-site</phase>
+                  <goals>
+                     <goal>changes-check</goal>
+                  </goals>
+               </execution>
+               <execution>
+                  <id>validate-changes</id>
+                  <phase>pre-site</phase>
+                  <goals>
+                     <goal>changes-validate</goal>
+                  </goals>
+                  <configuration>
+                     <failOnError>true</failOnError>
+                  </configuration>
+               </execution>
+            </executions>
+         </plugin>
+      
+         <plugin>
+            <!-- WAR -->
+            <!-- Generates the WAR package. -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <configuration><excludes></excludes></configuration>
+         </plugin>
+         <plugin>
+            <!-- Spring Boot -->
+            <!-- Takes care of running Spring Boot application -->
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-compiler-plugin</artifactId>
+            <configuration>
+				<source>1.8</source>
+				<target>1.8</target>
+				<testSource>1.8</testSource>
+				<testTarget>1.8</testTarget>
+			</configuration>
+            
+         </plugin>
+      </plugins>
+   </build>
+
+   <!-- ********************************************** -->
+   <!-- ****************** REPORTS ******************* -->
+   <!-- ********************************************** -->
+
+   
+
+</project>
