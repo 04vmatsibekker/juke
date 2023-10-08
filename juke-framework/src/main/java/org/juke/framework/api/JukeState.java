@@ -5,7 +5,7 @@ public class JukeState {
 
 	public static final String JUKE= "juke";
 	public static final String RECORD = "record";
-	public static final String jukeZIP ="juke.zip";
+	public static final String JUKEZIP ="juke.zip";
 	public static final String REPLAY = "replay";
 	public static final String IGNORE = "ignore";
 	public static final String NONE = "";

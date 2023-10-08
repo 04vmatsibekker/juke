@@ -35,7 +35,7 @@ private IGreetingsService service;
 	public void initialized() {
 		
 		this.service= (IGreetingsService) new JukeFactory<IGreetingsService>().newInstance(this.service,
-			IGreetingsService.class, JukeState.juke);
+			IGreetingsService.class, JukeState.JUKE);
 		System.out.println("initialized");
 	}
 }

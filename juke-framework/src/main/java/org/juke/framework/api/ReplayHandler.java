@@ -37,7 +37,7 @@ public class ReplayHandler<T> extends BaseHandler<T> {
 		
 		try {
 			JukeHelper.setJukeDao(new JukeZipDAOImpl(ConfigUtil.getJukePath(),
-					System.getProperty(JukeState.jukeZIP)!=null? System.getProperty(JukeState.jukeZIP):"track"));
+					System.getProperty(JukeState.JUKEZIP)!=null? System.getProperty(JukeState.JUKEZIP):"track"));
 			
 			
 		} catch (JukeAccessException e) {

@@ -32,13 +32,13 @@ static ObjectMapper objectMapper ;
 	ISampleService service = new SampleService();
 	@Test
 	void loadTest0() throws Exception {
-		JukeState.GLOBAL_JUKE=JukeState.juke;
-		JukeFactory.setGlobaljuke(JukeState.juke);
+		JukeState.GLOBAL_JUKE=JukeState.JUKE;
+		JukeFactory.setGlobaljuke(JukeState.JUKE);
 		System.setProperty("juke.path",ConfigUtil.getJukePath());
 		System.setProperty("juke.zip","juke2");
 		JukeHelper.setJukeDao(new JukeZipDAOImpl(ConfigUtil.getJukePath(),System.getProperty("juke.zip")));
 		
-		ISampleService wrapped=new JukeFactory<ISampleService>().newInstance(this.service,ISampleService.class, JukeState.juke);
+		ISampleService wrapped=new JukeFactory<ISampleService>().newInstance(this.service,ISampleService.class, JukeState.JUKE);
 	
 		
 	

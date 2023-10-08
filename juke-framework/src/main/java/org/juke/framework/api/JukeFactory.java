@@ -22,7 +22,7 @@ public class JukeFactory<T> {
 		}
 			try {
 				JukeHelper.setJukeDao(new JukeZipDAOImpl(ConfigUtil.getJukePath(),
-					System.getProperty(JukeState.jukeZIP)!=null? System.getProperty(JukeState.jukeZIP):"track"));
+					System.getProperty(JukeState.JUKEZIP)!=null? System.getProperty(JukeState.JUKEZIP):"track"));
 			} catch (JukeAccessException e) {
 			// TODO Auto-generated catch block
 				e.printStackTrace();
@@ -86,7 +86,7 @@ public class JukeFactory<T> {
 			}
 			
 		}catch (Exception yae) {
-			log.error("can not find juke at " + ConfigUtil.setDefauljukePath()+"/"+System.getProperty(JukeState.jukeZIP));
+			log.error("can not find juke at " + ConfigUtil.setDefauljukePath()+"/"+System.getProperty(JukeState.JUKEZIP));
 			return wrapped;
 		}
 	}

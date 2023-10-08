@@ -29,7 +29,7 @@ public class RemixServiceImpl implements RemixService {
 	public String beginjuke(String testRun) throws JukeAccessException {
 		// TODO Auto-generated method stub
 		System.setProperty(JUKEPATH, TESTRUN);
-		JukeFactory.setGlobaljuke(JukeState.juke);
+		JukeFactory.setGlobaljuke(JukeState.JUKE);
 		JukeHelper.setJukeDao(new JukeZipDAOImpl(ConfigUtil.getJukePath(),TESTRUN));
 		return  RemixUtil.OK;
 	}
