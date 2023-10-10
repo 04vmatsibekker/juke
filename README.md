@@ -1,4 +1,4 @@
-#Why Juke?
+<h1>Why Juke?</h1>
 
 Modern UI Applications have become complex to the point that logic is spread across the UI and server side layers.
 Unit testing frameworks are not designed to test both the UI and server layers together and this creates a gap
@@ -44,7 +44,7 @@ Juke also provides additional rest endpoints to modify the behavior of the appli
 and behaviors. In fact, Juke plays nice with  UI testing frameworks to let you create and record ui tests
 to build out your automated behavioral test suite.
 
-What's the big deal?
+<h2>What's the big deal?</h2>
 Unit Test writing and validation is expensive. It requires developer resources and time to write and maintain.
 A good set of tests can easily take up as much time to build out as it takes to write the code that is being tested.
 Juke is designed to reduce the amount of time and resources required to build tests by skipping the unit test code writing process.
@@ -52,19 +52,55 @@ Just run the application and let Juke record your interaction. You can then let 
 Cypress run automated tests from the recording giving you more time to focus on writing code and less time writing
 tests.
 
-Running Juke in Server Side:
+<h2>Running Juke in Server Side:</h2>
 
 To run In recording Mode: juke-sample-rest-service
-This example was built to  work with the juke-sample-ui-service: a react ui application that uses the juke-sample-rest-service as a backend.
+This example was built to work with the juke-sample-ui-service: a react ui application that uses the juke-sample-rest-service as a backend.
 
 Instructions on how to run the Sample Rest Service with Juke in recording mode
+Open as a Maven project and run maven install under the Lifecycle on the Juke Test Harness (In intellij, maven tab is on the right menu. Double click to start install/build)
 VM ARGUMENTS:
-Add the following to application VM args:
+Add the following to application VM args for SampleRestApplication (if they are not set) and  start the application with the arguments:
 -Djuke=record -Djuke.path=C:/temp  -Djuke.zip=jukebox -Djuke.tests=jukebox
+This will start the application in recording Mode and will beginning recording the tests in memory. 
 
-This will start the application in recording Mode and will record the tests in memory. The juke.zip,juke.path, and juke.tests parameters are only used in playback mode
+Open a terminal (in intellij its at the bottom of the editor) and go to <Installation Path>\juke\juke-sample-ui-service\src\web-app where Installation path is your
+github juke package installation location (e.g. C:\github)
 
--Djuke has three possible arguments [juke,replay,ignore]
+In the terminal, enter the commands sequentially:
+npm install
+npm run start
+
+This will build and then automatically open a browser in the url http://localhost:3000
+Note: The underylying SampleRestApplication is now running on http://localhost:8080. The npm web server proxies the request from localhost:3000 web server.
+
+Your web browser will show a very simple UI with an input parameter to add a name.
+Type in a name and submit. Repeat as often as you like.
+When you are done in the url type http://localhost:8080/service/juke/end
+This will close the recording session and download a zip file named jukebox.zip into your downloads folder in your browser.
+You can open up the zip file to see the recordings. In this example they will be of the form: com.example.IGreetingsService.$greeting.<sequence>.json
+where the sequence goes from 1 to however many times you entered a name and git submit.
+There is also a juke.json file that helps juke build the object structure of the data to recreate complex objects in playback mode.
+
+Next, move the jukebox.zip file to the -Djuke.tsts folder. In this example, use the C:\temp folder
+
+Change the VM arguments on Sample Rest Service to 
+-Djuke=replay -Djuke.path=C:/temp  -Djuke.zip=jukebox -Djuke.tests=jukebox
+
+Restart the Sample Rest Service
+
+Next, refresh the web browser. Type in some other test and hit submit. The response will ignore your input and happily replay the same interaction responses from the recording.
+
+<h3>Why would that be useful?</h3>
+The purpose of Juke is to help an automated UI test to get the data it is expecting from upstream while validating that changes are not breaking the rest of your code. 
+You may not personally always do things the same way and can compensate for that, but automated tests aren't very good at that.
+The upstream data should not change. 
+However, your code updates may break that way the server or the ui handle that expected data and highlight and focus that failure.
+
+
+
+Arguments:
+The VM Argument-Djuke has three possible arguments [juke,replay,ignore]
 record - will run the application in recording mode
 replay - will run the application in playback mode
 ignore - will run the application in normal mode (default)
