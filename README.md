@@ -64,32 +64,32 @@ Add the following to application VM args for SampleRestApplication (if they are 
 -Djuke=record -Djuke.path=C:/temp  -Djuke.zip=jukebox -Djuke.tests=jukebox
 This will start the application in recording Mode and will beginning recording the tests in memory. 
 
-Open a terminal (in intellij its at the bottom of the editor) and go to <Installation Path>\juke\juke-sample-ui-service\src\web-app where Installation path is your
+1) Open a terminal (in intellij its at the bottom of the editor) and go to <Installation Path>\juke\juke-sample-ui-service\src\web-app where Installation path is your
 github juke package installation location (e.g. C:\github)
 
 In the terminal, enter the commands sequentially:
-npm install
-npm run start
+2) npm install
+3) npm run start
 
 This will build and then automatically open a browser in the url http://localhost:3000
 Note: The underylying SampleRestApplication is now running on http://localhost:8080. The npm web server proxies the request from localhost:3000 web server.
 
 Your web browser will show a very simple UI with an input parameter to add a name.
-Type in a name and submit. Repeat as often as you like.
-When you are done in the url type http://localhost:8080/service/juke/end
+4) Type in a name and submit. Repeat as often as you like.
+5) When you are done in the url type http://localhost:8080/service/juke/end
 This will close the recording session and download a zip file named jukebox.zip into your downloads folder in your browser.
 You can open up the zip file to see the recordings. In this example they will be of the form: com.example.IGreetingsService.$greeting.<sequence>.json
 where the sequence goes from 1 to however many times you entered a name and git submit.
 There is also a juke.json file that helps juke build the object structure of the data to recreate complex objects in playback mode.
 
-Next, move the jukebox.zip file to the -Djuke.tsts folder. In this example, use the C:\temp folder
+6) Move the jukebox.zip file to the -Djuke.tsts folder. In this example, use the C:\temp folder
 
 Change the VM arguments on Sample Rest Service to 
--Djuke=replay -Djuke.path=C:/temp  -Djuke.zip=jukebox -Djuke.tests=jukebox
+7) -Djuke=replay -Djuke.path=C:/temp  -Djuke.zip=jukebox -Djuke.tests=jukebox
 
-Restart the Sample Rest Service
+8) Restart the Sample Rest Service
 
-Next, refresh the web browser. Type in some other test and hit submit. The response will ignore your input and happily replay the same interaction responses from the recording.
+9) Next, refresh the web browser. Type in some other test and hit submit. The response will ignore your input and happily replay the same interaction responses from the recording.
 
 <h3>Why would that be useful?</h3>
 The purpose of Juke is to help an automated UI test to get the data it is expecting from upstream while validating that changes are not breaking the rest of your code. 
