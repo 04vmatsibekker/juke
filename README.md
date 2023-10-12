@@ -78,7 +78,7 @@ Your web browser will show a very simple UI with an input parameter to add a nam
 4) Type in a name and submit. Repeat as often as you like.
 5) When you are done in the url type http://localhost:8080/service/juke/end
 This will close the recording session and download a zip file named jukebox.zip into your downloads folder in your browser.
-You can open up the zip file to see the recordings. In this example they will be of the form: com.example.IGreetingsService.$greeting.<sequence>.json
+You can open up the zip file to see the recordings. In this example they will be of the form: com.example.IGreetingsService.$greeting.\<sequence>.json
 where the sequence goes from 1 to however many times you entered a name and git submit.
 There is also a juke.json file that helps juke build the object structure of the data to recreate complex objects in playback mode.
 
