@@ -12,22 +12,11 @@
         <module name="juke-sample-ui-service" />
       </profile>
     </annotationProcessing>
-    <bytecodeTargetLevel>
-      <module name="basic" target="1.8" />
-      <module name="juke-framework" target="1.8" />
-      <module name="org.ju" target="1.8" />
-      <module name="yodel-framework" target="1.8" />
-      <module name="yodel-sample-rest-service" target="1.8" />
-      <module name="yodel-sample-ui-service" target="1.8" />
-      <module name="yodel-test-harness" target="1.8" />
-    </bytecodeTargetLevel>
   </component>
   <component name="JavacSettings">
     <option name="ADDITIONAL_OPTIONS_OVERRIDE">
-      <module name="basic" options="-parameters" />
       <module name="juke-remix-rest-service" options="-parameters" />
       <module name="juke-sample-rest-service" options="-parameters" />
-      <module name="org.ju" options="-parameters" />
     </option>
   </component>
 </project>
