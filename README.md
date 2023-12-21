@@ -2,52 +2,47 @@
 
 Modern UI Applications have become complex to the point that logic is spread across the UI and server side layers.
 Unit testing frameworks are not designed to test both the UI and server layers together and this creates a gap
-in the testing process. Writing unit test is time-consuming and requires a lot of code to be written and also tested.
-This process creates a productivity trap that can slow down the development process and sap efficiency. The developers
-of Juke don't believe in writing code to test code.
+in the testing process. Furthermore, writing unit tests is time-consuming and requires a great deal of code to be written and, regrettably, tested.
+This complexity creates a productivity trap that can slow down the development process and sap efficiency. The developers
+of Juke believe that you shouldn't be writing code to test code. 
 
-We would like automated test creation to be as simple as running
-a UI browser in recording mode and testing the Use Case story by clicking and typing through the scenario.
-Ideally, we would like to test the UI and server layers together in a single test from the browser.
-We would like upstream systems such as databases and other services to always be available and providing realistic
-data relevant to the test. We would like the data to be consistent enough for an automated UI testing framework to
-find and to test the UI layer all the way down to the server side every time we run the test.
-We would like to validate exception handling and alternate flow scenarios that are not easily replicated in a normal
-behavior testing environment. In short, we want something that can do what Unit Testing Frameworks provide but also
-work as a behavioral and integration testing framework without writing and testing any additional code.
-We want a test harness that can let us validate the full Use Case of the application without a complex setup.
+In an ideal word, we would like to:
+1) Simplify automated test creation to the point where a developer can run a UI browser in recording mode and test a functional story by clicking and typing through a Use Case scenario.
+2) Test the UI and server layers together in a single test from the browser.
+3) Isolate our code from upstream systems such as databases and other services to be persistent and available and provide realistic
+data relevant to the test. 
+4) Provide a consistent state for an automated UI testing framework to find and to test the UI layer all the way down to the server side every time we run the test.
+5) Allow us to test exception and error flows in the use case to validate alternate flow scenarios that are not easily replicated in a normal behavior testing environment. 
 
-Juke is built to do just that!
+In short, we want a framework that can function as both as a unit testing provides and a behavioral testing framework while minimizing or avoiding the writing and testing of additional code to support it.
+We would like a testing framework that can let us validate the full Use Case of the application without a complex build up and tear down process.
 
-Juke records upstream interactions via a proxy wrapper interfaces and replays the recordings back
-like tracks on a jukebox. Switching recordings is as easy as changing the track using a rest endpoint.
-This means that your upstream data providers can be isolated out and mocked and replayed back to the application.
-But the data does not have to be mocked. Because, its real data from a previous interaction. However, if the
-data you need is not available then you can inject mock data into the interactions to simulate the behavior
+<h2>Juke is built to be fit for purpose! </h2>
+
+Juke is a server side library that records upstream interactions via a proxy wrapper interfaces and replays the recordings back
+like tracks on a jukebox. Switching recordings is as easy as changing the track using a url REST endpoint.
+This means that your upstream data providers can be isolated out and mocked and replayed back to the application. The data, however, data does not have to be manually mocked out because it is real data from a real upstream interaction. Where the
+data you need is not easily available,  you can inject mock data into the interactions to simulate the behavior
 you are expecting and handling in your code.
 
-Additionally, Juke provides rest API's to generate unit testing-like exception flows. The Remix rest services
+Additionally, Juke provides REST API's to generate unit testing like exception flows. The <b>Remix</b> rest services
 allow you to modify the behavior of the application interactions by injecting exception or  time delays simulating
-failures and slow responses to validate that your application can properly recover from problem scenarios.
-This means you can test the full Use Case and not just the happy day flows in a behavioral test.
+failures and slow responses to validate that your application can recover from problem scenarios.
+This means you can test the full Use Case and not just the happy day flows in a behavioral test and support the non-sequential multi-threaded UI browser behavior flows.
 
-Throw away your unit testing frameworks and stop writing test code. Run your application and let Juke record your
-browser interactions. Switch to playback mode and run your tests consistently every time you run it.
+Run your application and let Juke record your browser/server interactions. Switch to playback mode and run your tests consistently every time.
 
 What differentiates Juke from other testing frameworks such as Selenium, Playwright, and Cypress that provide recording
-and playback facilities?
+and playback facilities? 
 
-Other UI testing frameworks are designed to test the UI layer only. Some are able to record and playback server side
-data interaction; but only at the UI layer. Once recorded, fixes or changes to the server side code will be ignored.
-Juke tests the ui layer and server side together and only mocks out the upstream layer by abstracting out interfaces to the upstream data access.
+Juke was designed to work with client side UI frameworks to create full end to end tests. UI testing frameworks are designed to test the UI layer exclusively. Some are able to record and playback server side data interaction; but only at the UI layer. Once recorded, fixes or changes to the server side code will be ignored. Juke tests the ui layer and server side together and only mocks out the upstream layer by abstracting out interfaces to the upstream data access.
 Juke also provides additional rest endpoints to modify the behavior of the application to simulate different tests
-and behaviors. In fact, Juke plays nice with  UI testing frameworks to let you create and record ui tests
-to build out your automated behavioral test suite.
+and behaviors. Juke plays nice with UI testing frameworks to let you create and record ui tests to build out your automated behavioral test suite.
 
 <h2>What's the big deal?</h2>
 Unit Test writing and validation is expensive. It requires developer resources and time to write and maintain.
 A good set of tests can easily take up as much time to build out as it takes to write the code that is being tested.
-Juke is designed to reduce the amount of time and resources required to build tests by skipping the unit test code writing process.
+Juke is designed to reduce the amount of time and resources required to build tests by skipping or truncating the unit test code writing process.
 Just run the application and let Juke record your interaction. You can then let Selenium, Playwright, or
 Cypress run automated tests from the recording giving you more time to focus on writing code and less time writing
 tests.

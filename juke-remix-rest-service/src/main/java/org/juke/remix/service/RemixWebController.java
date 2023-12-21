@@ -61,6 +61,7 @@ public class RemixWebController {
 		else
 			return new ResponseEntity<String>("Failing to enable juke.",HttpStatus.INTERNAL_SERVER_ERROR);
 	}
+	//http://localhost:8080/service/replay/start?track=juke-sample-ui-2
 	@RequestMapping(value="/replay/start", method = {RequestMethod.GET}, produces= {"application/json"})
 	public @ResponseBody
 	ResponseEntity<String> beginReplay(@RequestParam("track") String track){

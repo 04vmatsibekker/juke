@@ -69,7 +69,7 @@ const callHome = () =>{
                    <br></br>
                    <Button variant="contained" onClick={callHome}>Submit</Button>
                     <br></br>
-                    <b>Response: {response}</b>
+                    <b>Response: <span id="response">{response}</span></b>
           </FormControl>
          </Box>
 

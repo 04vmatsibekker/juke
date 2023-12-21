@@ -12,6 +12,7 @@ public class GreetingServiceImpl implements IGreetingsService {
 	@Override
 	public Greeting greeting(String name) {
 		// TODO Auto-generated method stub
+
 		return new Greeting(counter.incrementAndGet(), String.format(template, name));
 	}
 

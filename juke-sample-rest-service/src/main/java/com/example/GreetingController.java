@@ -28,9 +28,11 @@ private IGreetingsService service;
 
 	@GetMapping("/greeting")
 	public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name) {
+		System.out.println("anything");
 		return service.greeting(name);
-
+		//throw new RuntimeException("test");
 	}
+
 	@PostConstruct
 	public void initialized() {
 		
